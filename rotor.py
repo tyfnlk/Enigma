@@ -1,7 +1,14 @@
-class rotors:
+#create rotor object
+class rotor:
+    #constructor function
+    # initiate the start and advance cog
+    def __init__(self,  start: int, trigger: int, type: int):
+        self.start = start
+        self.trigger = trigger
+        self.type =type
+        self.counter = start
 
-    def __init__(self):
-        self.rotorA = {
+        self.rotor0 = {
             0: 15,
             1: 17,
             2: 20,
@@ -29,7 +36,7 @@ class rotors:
             24: 22,
             25: 12
         }
-        self.rotorB = {
+        self.rotor1 = {
             0: 18,
             1: 21,
             2: 11,
@@ -58,7 +65,7 @@ class rotors:
             25: 3
 
         }
-        self.rotorC = {
+        self.rotor2 = {
             0: 12,
             1: 16,
             2: 23,
@@ -87,3 +94,61 @@ class rotors:
             25: 21
 
         }
+
+
+
+    def setStart(self, start: int):
+        if start >=0 and start <=25:
+            self.start =start
+        else:
+            self.start=0
+        return self.start()
+
+    def getStart(self):
+        return self.star
+
+    def setTrigger(self, advance:int):
+        if advance >=0  and advance <=25:
+            self.trigger= advance
+        else:
+            self.trigger=0
+        return self.trigger()
+
+    def getTrigger(self):
+        return self.trigger
+
+    def setType(self, type: int):
+        self.type = type
+
+
+    def passRotor(self, value:int):
+        if self.type ==0:
+            return self.rotor0.get(value)
+        elif self.type ==1:
+            return self.rotor1.get(value)
+        elif self.type == 2:
+            return self.rotor2.get(value)
+
+    def advance(self):
+        self.counter= self.counter +1
+        if self.counter ==26:
+            self.counter ==0
+
+    def print(self):
+        print('start is ', self.start, 'advance is ', self.trigger, 'type is', self.type)
+
+    def convert(self, value: int):
+        if value > 25 or value< 0:
+            pass
+        else:
+            #get value based upon rotor placement
+            temp =  (value + start) %26
+            #save return value
+            value = self.passRotor(temp)
+
+            #advance count
+
+
+
+a = rotor(3,4,'a')
+a.print()
