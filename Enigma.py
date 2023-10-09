@@ -1,3 +1,13 @@
+import rotor
+
+#generate rotor
+
+rotor1 =rotor.rotor(1,2,1)
+rotor2 =rotor.rotor(1,0,2)
+rotor3 = rotor.rotor(1,0,2)
+
+
+
 rotorA = {
     0: 15,
     1: 17,
