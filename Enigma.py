@@ -36,7 +36,25 @@ class enigma:
         return tempStr
 
 
-    def encrypt(self,letter:str):
+    def encrypt(self,msg:str):
+        #convert string to list
+        print("string is:", msg)
+        msgList = self.strToInt(msg)
+        print("converted to ints:", msgList)
+        #pass list through plug board
+        msgList = self.plugBoard.passPlugBoard((msgList))
+        print("after plugboard:", msgList)
+        #pass each letter through the rotors 1,2,3,3,2,1
+        #advance rotor
+        #pass through plug board
+        msgList = self.plugBoard.passPlugBoard((msgList))
+        print("after plugboard:", msgList)
+        #return string
+        msg = self.listToStr(msgList)
+        print("ecryption is:", msg)
+        return msg
+
+
         pass
 
 

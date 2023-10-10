@@ -18,4 +18,28 @@ class PlugBoard:
         else:
             return False
 
+    def swap(self, first:str, second: str):
+        if len(first) ==1 and len(second) ==1:
+            first = ord(first[0].upper()) -65
+            second = ord(second[0].upper()) -65
+        if self.board[first] == first and self.board[second] == second:
+            self.board[first] = second
+            self.board[second] = first
+            return True
+        else:
+            return False
 
+
+    def passPlugBoard(self, msg:list):
+        for i in range(len(msg)):
+            if msg[i] == 'x':
+                pass
+            else:
+                msg[i] = self.board[msg[i]]
+        return msg
+
+
+pb= PlugBoard()
+pb.swap('a','b')
+print(pb.board.items())
+print(pb.passPlugBoard([1,0]))
