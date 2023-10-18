@@ -135,7 +135,7 @@ class rotor:
             self.counter ==0
 
     def checkTrigger(self): #check if trigger is advanced
-        if self.counter == self.trigger():
+        if self.counter == self.trigger:
             return True
         return False
     def print(self):

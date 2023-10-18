@@ -35,20 +35,56 @@ class enigma:
                 tempStr = tempStr + chr(list[i]+65)
         return tempStr
 
+    def swap(self, x: int, y: int):
+       return self.plugBoard.swap(x,y)
+
+    def swap(self, x: str, y: str):
+        return self.plugBoard.swap(x,y)
+
+    def resetPlugboard(self):
+        return self.plugBoard.reset()
+
 
     def encrypt(self,msg:str):
         #convert string to list
         print("string is:", msg)
         msgList = self.strToInt(msg)
         print("converted to ints:", msgList)
+
         #pass list through plug board
         msgList = self.plugBoard.passPlugBoard((msgList))
         print("after plugboard:", msgList)
+
         #pass each letter through the rotors 1,2,3,3,2,1
-        #advance rotor
+
+        for i in range(len(msgList)):
+            if msgList[i] == 'x':
+                pass
+            else:
+                temp = msgList[i]
+                temp = self.rotor1.passRotor(temp)
+                temp = self.rotor2.passRotor(temp)
+                temp = self.rotor3.passRotor(temp)
+                temp = self.rotor3.passRotor(temp)
+                temp = self.rotor2.passRotor(temp)
+                temp = self.rotor1.passRotor(temp)
+
+                msgList[i] = temp
+
+                # advance rotor
+                self.rotor1.advance()
+                print("rotor 1 advance")
+                if self.rotor1.checkTrigger() == True:
+                    self.rotor2.advance()
+                    print("rotor 2 advance")
+                    if self.rotor2.checkTrigger() == True:
+                        self.rotor3.advance()
+                        print("rotor 3 advance")
+
         #pass through plug board
         msgList = self.plugBoard.passPlugBoard((msgList))
         print("after plugboard:", msgList)
+
         #return string
         msg = self.listToStr(msgList)
         print("ecryption is:", msg)
@@ -60,7 +96,3 @@ class enigma:
 
 
 
-test = enigma()
-testlist = test.strToInt("hello world")
-print(testlist)
-print(test.listToStr(testlist))

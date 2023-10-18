@@ -1,13 +1,4 @@
 import Enigma
-import flet as ft
-
-def main(page: ft.page):
-    pass
-
-
-
-
-
 
 test = Enigma.enigma()
 testlist = test.strToInt("hello world")
