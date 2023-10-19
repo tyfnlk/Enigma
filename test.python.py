@@ -6,6 +6,7 @@ test = Enigma.enigma()
 # print(test.listToStr(testlist))
 # print("--------------------")
 # test.swap('E', 'L')
-# test.encrypt("I like to eat cheese")
 
-test.decrypt("J DJON CT NQC XHNNRN")
+test.decrypt("qmcjaaa")
+
+

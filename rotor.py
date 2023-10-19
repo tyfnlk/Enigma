@@ -121,23 +121,40 @@ class rotor:
         self.type = type
 
     def reversePass(self, key:int):
+        temp=0
         if self.type==0:
-            value = {i for i in self.rotor0 if self.rotor0[i] == key}
-            return value
+
+            for i in range(26):
+                if self.rotor0.get(i) == key:
+                    temp= i
         elif self.type==1:
-            value = {i for i in self.rotor1 if self.rotor1[i] == key}
-            return value
+            for i in range(26):
+                if self.rotor1.get(i) == key:
+                    temp= i
         elif self.type==2:
-            value = {i for i in self.rotor2 if self.rotor2[i] == key}
-            return value
+            for i in range(26):
+                if self.rotor2.get(i) == key:
+                    temp= i
+
+        temp = temp - (self.counter %26)
+        if temp <0:
+            temp +26
+        return temp
 
     def passRotor(self, value:int): # pass value through selected rotor
         if self.type ==0:
-            return self.rotor0.get(value)
+            temp = self.rotor0.get((value +self.counter)%26)
+            temp = temp%26
+            return temp
         elif self.type ==1:
-            return self.rotor1.get(value)
+            temp = self.rotor1.get((value +self.counter)%26)
+            temp = temp%26
+            return temp
+
         elif self.type == 2:
-            return self.rotor2.get(value)
+            temp = self.rotor2.get((value +self.counter)%26)
+            temp = temp%26
+            return temp
 
     def advance(self):  # rotate the rotor one click
         self.counter= self.counter +1

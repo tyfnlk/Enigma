@@ -130,13 +130,11 @@ class enigma:
                         self.rotor3.advance()
                         print("rotor 3 advance")
 
-        #pass through plug board
-        msgList = self.plugBoard.passPlugBoard((msgList))
-        print("after plugboard:", msgList)
+
 
         #return string
         msg = self.listToStr(msgList)
-        print("ecryption is:", msg)
+        print("decryption is:", msg)
         return msg
 
 
