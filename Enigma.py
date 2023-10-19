@@ -94,5 +94,51 @@ class enigma:
         pass
 
 
+    def decrypt(self,msg:str):
+        #convert string to list
+        print("string is:", msg)
+        msgList = self.strToInt(msg)
+        print("converted to ints:", msgList)
 
+        #pass list through plug board
+        msgList = self.plugBoard.passPlugBoard((msgList))
+        print("after plugboard:", msgList)
+
+        #pass each letter through the rotors 1,2,3,3,2,1
+
+        for i in range(len(msgList)):
+            if msgList[i] == 'x':
+                pass
+            else:
+                temp = msgList[i]
+                temp = self.rotor1.reversePass(temp)
+                temp = self.rotor2.reversePass(temp)
+                temp = self.rotor3.reversePass(temp)
+                temp = self.rotor3.reversePass(temp)
+                temp = self.rotor2.reversePass(temp)
+                temp = self.rotor1.reversePass(temp)
+
+                msgList[i] = temp
+
+                # advance rotor
+                self.rotor1.advance()
+                print("rotor 1 advance")
+                if self.rotor1.checkTrigger() == True:
+                    self.rotor2.advance()
+                    print("rotor 2 advance")
+                    if self.rotor2.checkTrigger() == True:
+                        self.rotor3.advance()
+                        print("rotor 3 advance")
+
+        #pass through plug board
+        msgList = self.plugBoard.passPlugBoard((msgList))
+        print("after plugboard:", msgList)
+
+        #return string
+        msg = self.listToStr(msgList)
+        print("ecryption is:", msg)
+        return msg
+
+
+        pass
 

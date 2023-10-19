@@ -120,6 +120,16 @@ class rotor:
     def setType(self, type: int):
         self.type = type
 
+    def reversePass(self, key:int):
+        if self.type==0:
+            value = {i for i in self.rotor0 if self.rotor0[i] == key}
+            return value
+        elif self.type==1:
+            value = {i for i in self.rotor1 if self.rotor1[i] == key}
+            return value
+        elif self.type==2:
+            value = {i for i in self.rotor2 if self.rotor2[i] == key}
+            return value
 
     def passRotor(self, value:int): # pass value through selected rotor
         if self.type ==0:
