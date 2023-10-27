@@ -7,6 +7,8 @@ test = Enigma.enigma()
 # print("--------------------")
 # test.swap('E', 'L')
 
-test.decrypt("qmcjaaa")
+
+
+
 
 

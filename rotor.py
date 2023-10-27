@@ -94,6 +94,12 @@ class rotor:
             25: 21
 
         }
+        if self.type == 0:
+            self.rotor= self.rotor0
+        elif self.type == 1:
+            self.rotor = self.rotor1
+        elif self.type ==2:
+            self.rotor= self.rotor2
 
 
 
@@ -119,6 +125,14 @@ class rotor:
 
     def setType(self, type: int):
         self.type = type
+    def getType(self):
+        return self.type
+
+    def setCounter(self, counter):
+        self.counter=counter
+
+    def getCounter(self):
+        return self.counter
 
     def reversePass(self, key:int):
         temp=0
@@ -138,7 +152,7 @@ class rotor:
 
         temp = temp - (self.counter %26)
         if temp <0:
-            temp +26
+            temp = temp +26
         return temp
 
     def passRotor(self, value:int): # pass value through selected rotor
@@ -159,7 +173,7 @@ class rotor:
     def advance(self):  # rotate the rotor one click
         self.counter= self.counter +1
         if self.counter ==26:
-            self.counter ==0
+            self.counter =0
 
     def checkTrigger(self): #check if trigger is advanced
         if self.counter == self.trigger:
@@ -186,4 +200,5 @@ class rotor:
             #advance count
 
 
-
+    def reset(self):
+        self.counter=self.start

@@ -7,9 +7,9 @@ class enigma:
     def __init__(self):
         self.plugBoard = PlugBoard.PlugBoard()
         #create 3 rotos
-        self.rotor1 =rotor.rotor(0,0,0)
-        self.rotor2 =rotor.rotor(0,0,1)
-        self.rotor3 = rotor.rotor(0,0,2)
+        self.rotor1 =rotor.rotor(0,25,0)
+        self.rotor2 =rotor.rotor(0,25,1)
+        self.rotor3 = rotor.rotor(0,25,2)
 
     def strToInt(self, msg: str):
         #convert string to character value (0-25)
@@ -44,6 +44,10 @@ class enigma:
     def resetPlugboard(self):
         return self.plugBoard.reset()
 
+    def resetEnigma(self):
+        self.rotor1.reset()
+        self.rotor2.reset()
+        self.rotor3.reset()
 
     def encrypt(self,msg:str):
         #convert string to list
@@ -72,14 +76,7 @@ class enigma:
                 msgList[i] = temp
 
                 # advance rotor
-                self.rotor1.advance()
-                print("rotor 1 advance")
-                if self.rotor1.checkTrigger() == True:
-                    self.rotor2.advance()
-                    print("rotor 2 advance")
-                    if self.rotor2.checkTrigger() == True:
-                        self.rotor3.advance()
-                        print("rotor 3 advance")
+                self.incrementRotor()
 
         #pass through plug board
         msgList = self.plugBoard.passPlugBoard((msgList))
@@ -93,6 +90,15 @@ class enigma:
 
         pass
 
+    def incrementRotor(self):
+        self.rotor1.advance()
+        print("rotor 1 advance")
+        if self.rotor1.checkTrigger() == True:
+            self.rotor2.advance()
+            print("rotor 2 advance")
+            if self.rotor2.checkTrigger() == True:
+                self.rotor3.advance()
+                print("rotor 3 advance")
 
     def decrypt(self,msg:str):
         #convert string to list
