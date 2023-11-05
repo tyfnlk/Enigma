@@ -13,9 +13,15 @@ class EnigmaApp(ft.UserControl):
         self.messages =ft.Column()
         self.messages.scroll = "adaptive"
 
+        self.r1 = ft.TextField(value =self.enigma.rotor1.counter)
+        self.r2 = ft.TextField(value=self.enigma.rotor2.counter)
+        self.r3 = ft.TextField(value=self.enigma.rotor3.counter)
+
         return ft.Column(
             width =600,
             controls=[
+
+
                 ft.Row(
                     controls=[
                         self.new_message,
@@ -36,13 +42,21 @@ class EnigmaApp(ft.UserControl):
         temp = self.enigma.decrypt(self.new_message.value)
         self.new_message.value = " "
         self.messages.controls.append(
-            controls=[ft.Text(temp, color="blue"),ft.IconButton(icon=ft.icons.DELETE_SWEEP, on_click= self.deleteMsg)])
+            ft.Row(
+                controls=[
+                    ft.Text(temp, color="blue"),
+                    ft.IconButton(icon=ft.icons.DELETE_SWEEP, on_click=self.deleteMsg)
+                ])
+            )
+
         self.update()
     def resetRotors(self,e):
         self.enigma.resetEnigma()
 
     def deleteMsg(self,e):
-        pass
+        self.messages.controls.remove(e)
+        self.update()
+
 
 
 
