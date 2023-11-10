@@ -40,6 +40,7 @@ class PlugBoard:
                 pass
             else:
                 msg[i] = self.board[msg[i]]
+
         return msg
 
 

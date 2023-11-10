@@ -7,8 +7,8 @@ class enigma:
     def __init__(self):
         self.plugBoard = PlugBoard.PlugBoard()
         #create 3 rotos
-        self.rotor1 =rotor.rotor(0,25,0)
-        self.rotor2 =rotor.rotor(0,25,1)
+        self.rotor1 = rotor.rotor(0,25,0)
+        self.rotor2 = rotor.rotor(0,25,1)
         self.rotor3 = rotor.rotor(0,25,2)
 
     def strToInt(self, msg: str):
